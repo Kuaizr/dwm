@@ -9,7 +9,7 @@ settings() {
     [ $1 ] && sleep $1
     xset -b                                   # 关闭蜂鸣器
     syndaemon -i 1 -t -K -R -d                # 设置使用键盘时触控板短暂失效
-    ~/scripts/set_screen.sh two               # 设置显示器
+    # ~/scripts/set_screen.sh two               # 设置显示器
 }
 
 daemons() {
@@ -17,10 +17,12 @@ daemons() {
     $_thisdir/statusbar/statusbar.sh cron &   # 开启状态栏定时更新
     xss-lock -- ~/scripts/blurlock.sh &       # 开启自动锁屏程序
     fcitx5 &                                  # 开启输入法
-    lemonade server &                         # 开启lemonade 远程剪切板支持
-    flameshot &                               # 截图要跑一个程序在后台 不然无法将截图保存到剪贴板
-    dunst -conf ~/scripts/config/dunst.conf & # 开启通知server
-    picom --experimental-backends --config ~/scripts/config/picom.conf >> /dev/null 2>&1 & # 开启picom
+    feh --randomize --bg-fill ~/desktop/pictures/*.jpg & # 随机设置壁纸
+    # lemonade server &                         # 开启lemonade 远程剪切板支持
+    # flameshot &                               # 截图要跑一个程序在后台 不然无法将截图保存到剪贴板
+    # dunst -conf ~/scripts/config/dunst.conf & # 开启通知server
+    picom --experimental-backends --config ~/.config/picom/picom.conf >> /dev/null 2>&1 & # 开启picom
+    clash-verge & # clash-verge
 }
 
 cron() {
